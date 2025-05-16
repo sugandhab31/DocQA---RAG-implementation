@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+llama-index
+langchain
+chromadb
+openai
+PyMuPDF
+python-multipart
+aiofiles
