@@ -1,2 +1,5 @@
 __pychache__
 venv
+app.__pychache__
+app.utils.__pychache__
+test.py

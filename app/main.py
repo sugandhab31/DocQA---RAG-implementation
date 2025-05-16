@@ -3,6 +3,7 @@ import uvicorn
 import aiofiles
 import os
 from app.utils.pdf_parser import extract_text_from_pdf
+from app.utils.indexer import index_text_data
 
 app = FastAPI()
 UPLOAD_DIR = "uploads"
@@ -26,9 +27,13 @@ async def upload_pdf(file: UploadFile = File(...)):
     extracted_text = extract_text_from_pdf(filepath)
     os.remove(filepath)
 
+    doc_id = file.filename.replace(".pdf", "")
+    index = index_text_data(doc_id, extracted_text)
+
     return {
         "filename": file.filename,
-        "text_preview": extracted_text[:500]  # Show first 500 chars
+        "text_preview": extracted_text[:500],
+        "index_created": True
     }
 
 if __name__ == "__main__":
