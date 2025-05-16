@@ -2,7 +2,7 @@ from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, ServiceCon
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core.storage.storage_context import StorageContext
-from llama_index.core.embeddings import HuggingFaceEmbedding
+from llama_index.embeddings import HuggingFaceEmbeddings
 import chromadb
 import os
 
@@ -14,7 +14,7 @@ def index_text_data(doc_id: str, content: str):
         }
     ])
 
-    embed_model = HuggingFaceEmbedding(model_name = "sentence-transformers/all-MiniLM-L6-v2")
+    embed_model = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-MiniLM-L6-v2")
 
     db_dir = f"./vectordb/{doc_id}"
     os.makedirs(db_dir, exist_ok = True)
